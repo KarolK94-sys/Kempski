@@ -1,11 +1,6 @@
 import pytest
-class Calculator:
-    def __init__(self, op1: float, op2: float):
-        self.__op1 = op1
-        self.__op2 = op2
-
-import pytest
 from calculator import Calculator
+
 def test_sum():
     calc = Calculator(10, 5)
     assert calc.sum() == 15
@@ -27,6 +22,7 @@ def test_divide_by_zero():
     with pytest.raises(ZeroDivisionError):
         calc.divide()
 
+# Parametryzacja dla sum()
 @pytest.mark.parametrize("op1, op2, expected", [
     (3.5, 2.5, 6.0),
     (-1, 1, 0),
@@ -35,3 +31,31 @@ def test_divide_by_zero():
 def test_sum_parametrized(op1, op2, expected):
     calc = Calculator(op1, op2)
     assert calc.sum() == expected
+
+# Parametryzacja dla pozostałych metod
+@pytest.mark.parametrize("op1, op2, expected", [
+    (10, 5, 5),
+    (-3, -2, -1),
+    (0, 7, -7)
+])
+def test_subtract_parametrized(op1, op2, expected):
+    calc = Calculator(op1, op2)
+    assert calc.subtract() == expected
+
+@pytest.mark.parametrize("op1, op2, expected", [
+    (10, 5, 50),
+    (-3, 2, -6),
+    (0, 7, 0)
+])
+def test_multiply_parametrized(op1, op2, expected):
+    calc = Calculator(op1, op2)
+    assert calc.multiply() == expected
+
+@pytest.mark.parametrize("op1, op2, expected", [
+    (10, 5, 2),
+    (-6, 3, -2),
+    (7.5, 2.5, 3)
+])
+def test_divide_parametrized(op1, op2, expected):
+    calc = Calculator(op1, op2)
+    assert calc.divide() == expected
