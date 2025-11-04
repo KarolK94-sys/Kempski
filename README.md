@@ -1,6 +1,5 @@
 # 🧮 Kalkulator w Pythonie
 
-![Pylint](https://github.com/KarolK94-sys/Kempskiednostkowymi i pełnym pokryciem kodu (100%).
 
 ## 📦 Instalacja
 ```bash
